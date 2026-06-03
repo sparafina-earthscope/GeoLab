@@ -1,0 +1,32 @@
+# Overlay environment for an image built FROM pangeo/ml-notebook.
+# Packages already provided by pangeo/ml-notebook have been removed so conda
+# does not attempt to re-solve / downgrade the CUDA-built base stack
+# (numpy 2.4.6, scipy 1.17.1, pandas 2.3.3, tensorflow 2.19.1, gdal 3.12.3, etc.).
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  # NOTE: do not re-pin python; base image is python 3.12.13.
+  # --- Jupyter extensions not in base ---
+  - jupyter-ruff
+  # --- Cloud & storage ---
+  - awswrangler
+  # --- Optimization / array ---
+  - cvxpy
+  # --- Visualization ---
+  - altair
+  - plotly
+  - vegafusion
+  - vl-convert-python>=1.9.0
+  - ghostscript
+  # --- Geospatial ---
+  - fiona            # pulled in by geopandas, kept explicit
+  # --- Geophysics ---
+  - dascore
+  - obspy
+  - obsplus
+  - gmt
+  - pygmt
+  # --- Dev tools and utilities ---
+  - pytest
+  - sidecar
